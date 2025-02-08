@@ -32,8 +32,8 @@ jobs:
       uses: actions/checkout@v4
       
     - name: Build service-registry with Maven # Step to build the microservice
-      run: mvn clean install
       working-directory: ./microservice-backend/service-registry
+      run: mvn clean install
 
     - name: build and push the service-registry docker image to dockerhub
       run: |
@@ -42,14 +42,14 @@ jobs:
         docker push kartikrj/purely:service-registry
       working-directory: ./microservice-backend/service-registry
         
-    - name: Build api-gateway with Maven # Step to build the microservice
-      run: mvn clean install
-      working-directory: ./microservice-backend/api-gateway
+#    - name: Build api-gateway with Maven # Step to build the microservice
+#      run: mvn clean install
+#      working-directory: ./microservice-backend/api-gateway
 
-    - name: build and push the api-gateway docker image to dockerhub
-      run: |
-        docker login -u ${{secrets.DOCKER_USERNAME}} -p ${{secrets.DOCKER_PASSWORD}} 
-        docker build -t kartikrj/purely:api-gateway .  
-        docker push kartikrj/purely:api-gateway
-      working-directory: ./microservice-backend/api-gateway
+#    - name: build and push the api-gateway docker image to dockerhub
+#      run: |
+#        docker login -u ${{secrets.DOCKER_USERNAME}} -p ${{secrets.DOCKER_PASSWORD}} 
+#        docker build -t kartikrj/purely:api-gateway .  
+#        docker push kartikrj/purely:api-gateway
+#      working-directory: ./microservice-backend/api-gateway
   
