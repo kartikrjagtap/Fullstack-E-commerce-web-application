@@ -33,23 +33,23 @@ jobs:
       
     - name: Build service-registry with Maven # Step to build the microservice
       run: mvn clean install
-      working-directory: ./Fullstack-E-commerce-web-application/microservice-backend/service-registry
+      working-directory: ./microservice-backend/service-registry
 
     - name: build and push the service-registry docker image to dockerhub
       run: |
         docker login -u ${{secrets.DOCKER_USERNAME}} -p ${{secrets.DOCKER_PASSWORD}} 
         docker build -t kartikrj/purely:service-registry .  
         docker push kartikrj/purely:service-registry
-      working-directory: ./Fullstack-E-commerce-web-application/microservice-backend/service-registry
+      working-directory: ./microservice-backend/service-registry
         
     - name: Build api-gateway with Maven # Step to build the microservice
       run: mvn clean install
-      working-directory: ./Fullstack-E-commerce-web-application/microservice-backend/api-gateway
+      working-directory: ./microservice-backend/api-gateway
 
     - name: build and push the api-gateway docker image to dockerhub
       run: |
         docker login -u ${{secrets.DOCKER_USERNAME}} -p ${{secrets.DOCKER_PASSWORD}} 
         docker build -t kartikrj/purely:api-gateway .  
         docker push kartikrj/purely:api-gateway
-      working-directory: ./Fullstack-E-commerce-web-application/microservice-backend/api-gateway
+      working-directory: ./microservice-backend/api-gateway
   
