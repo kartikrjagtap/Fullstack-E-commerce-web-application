@@ -32,7 +32,7 @@ jobs:
       uses: actions/checkout@v4
       
     - name: Build service-registry with Maven # Step to build the microservice
-      working-directory: ./microservice-backend
+      working-directory: ./Fullstack-E-commerce-web-application/microservice-backend
       run: |
         cd service-registry
         mvn clean install
