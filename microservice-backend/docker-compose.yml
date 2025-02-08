@@ -10,6 +10,90 @@ services:
     networks:
       - eureka-network
 
+  cart-service:
+    image: cart-service:latest
+    build:
+      context: ./cart-service
+    ports:
+      - "9060:9060"
+    environment:
+      - eureka.instance.preferIpAddress=true
+      - eureka.client.service-url.defaultZone=http://107.20.49.2:8761/eureka/
+    networks:
+      - eureka-network
+    depends_on:
+      - eureka-server
+
+  category-service:
+    image: category-service:latest
+    build:
+      context: ./category-service
+    ports:
+      - "9000:9000"
+    environment:
+      - eureka.instance.preferIpAddress=true
+      - eureka.client.service-url.defaultZone=http://107.20.49.2:8761/eureka/
+    networks:
+      - eureka-network
+    depends_on:
+      - eureka-server
+
+  notification-service:
+    image: notification-service:latest
+    build:
+      context: ./notification-service
+    ports:
+      - "9020:9020"
+    environment:
+      - eureka.instance.preferIpAddress=true
+      - eureka.client.service-url.defaultZone=http://107.20.49.2:8761/eureka/
+    networks:
+      - eureka-network
+    depends_on:
+      - eureka-server
+
+  order-service:
+    image: order-service:latest
+    build:
+      context: ./order-service
+    ports:
+      - "9070:9070"
+    environment:
+      - eureka.instance.preferIpAddress=true
+      - eureka.client.service-url.defaultZone=http://107.20.49.2:8761/eureka/
+    networks:
+      - eureka-network
+    depends_on:
+      - eureka-server
+
+  product-service:
+    image: product-service:latest
+    build:
+      context: ./product-service
+    ports:
+      - "9010:9010"
+    environment:
+      - eureka.instance.preferIpAddress=true
+      - eureka.client.service-url.defaultZone=http://107.20.49.2:8761/eureka/
+    networks:
+      - eureka-network
+    depends_on:
+      - eureka-server
+
+  user-service:
+    image: user-service:latest
+    build:
+      context: ./user-service
+    ports:
+      - "9050:9050"
+    environment:
+      - eureka.instance.preferIpAddress=true
+      - eureka.client.service-url.defaultZone=http://107.20.49.2:8761/eureka/
+    networks:
+      - eureka-network
+    depends_on:
+      - eureka-server
+
   api-gateway:
     image: api-gateway:latest
     build:

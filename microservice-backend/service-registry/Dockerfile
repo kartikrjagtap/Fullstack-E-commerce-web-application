@@ -1,6 +1,6 @@
 # Using official OpenJDK image as the base image
 FROM openjdk:21-jdk
-MAINTAINER  Kartik Jagtap <jagtapkartik2@gmail.com>
+LABEL maintainer="Kartik Jagtap <jagtapkartik2@gmail.com>"
 # Set the working directory
 WORKDIR /usr/src/app
 
