@@ -1,0 +1,44 @@
+version: '3.8'
+services:
+  eureka-server:
+    image: eureka-server:latest
+    build:
+      context: ./service-registry
+    ports:
+      - "8761:8761"
+    environment:
+      - spring.application.name=eureka-server
+    networks:
+      - eureka-network
+
+  api-gateway:
+    image: api-gateway:latest
+    build:
+      context: ./api-gateway
+    ports:
+      - "8080:8080"
+    environment:
+      - eureka.instance.preferIpAddress=true
+      - eureka.client.service-url.defaultZone=http://107.20.49.2:8761/eureka/
+    networks:
+      - eureka-network
+    depends_on:
+      - eureka-server
+
+  auth-service:
+    image: auth-service:latest
+    build:
+      context: ./auth-service
+    ports:
+      - "9030:9030"
+    environment:
+      - eureka.instance.preferIpAddress=true
+      - eureka.client.service-url.defaultZone=http://107.20.49.2:8761/eureka/
+    networks:
+      - eureka-network
+    depends_on:
+      - eureka-server
+
+networks:
+  eureka-network:
+    driver: bridge
